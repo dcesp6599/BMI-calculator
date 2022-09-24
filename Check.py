@@ -18,12 +18,20 @@ class Nutrition_detailed(Profile):
         super().__init__(weight, height)
     
     def BMI():
-        LBs_to_KGs = weight / 2.2
-        FT_to_CM = height * 30.48
-        CM_to_M = FT_to_CM * 0.01
-        M2 = CM_to_M ** 2
-        var = LBs_to_KGs / M2
-        return f'Your current BMI is {round(var, 2)}.'
+        weight_convert = weight * 0.45
+        height_convert = height * 0.30
+        result = weight_convert / height_convert
+        result1 = result / height_convert
+        if result1 > 0 and result1 <= 18.5:
+            category = "underweight"
+        elif result1 > 18.5 and result1 <= 25:
+            category = "healthy"
+        elif result1 > 25 and result1 <= 30:
+            category = "overweight"
+        else:
+            category = "obese"
+
+        return f'Your BMI is {round(result1, 2)}. You fell under the {category} category.'
 
 
 name = str(input("What's your name? "))
